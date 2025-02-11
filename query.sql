@@ -9,6 +9,23 @@ WHERE
 GROUP BY 
     Jenis_Kelamin;
 
+-- Get Aggregate Jenis_Kelamin and Kelompok Usia Pelanggan
+select 
+	count(*) as "Jumlah Pelanggan", 
+	t.range as "Kelompok Usia", 
+	t.jenis_kelamin as "Jenis Kelamin"
+from (
+      select ID_Pelanggan, jenis_kelamin,
+         case 
+         	when usia_pelanggan < 30 then 'Kurang dari 30'
+         	when usia_pelanggan >= 30 and usia_pelanggan < 40 then '30 sampai 40'
+         	when usia_pelanggan >= 40 and usia_pelanggan < 50 then '40 sampai 50'
+         	when usia_pelanggan >= 50 and usia_pelanggan <= 60 then '50 sampai 60'
+         	else '60+' 
+         end as range
+     from dim_pelanggan dp) t
+group by t.jenis_kelamin, t.range order by "Jumlah Pelanggan" asc ;
+
 -- Get Aggregate Jenis_Kelamin and Pinjaman
 SELECT 
     dp.Jenis_Kelamin, 
