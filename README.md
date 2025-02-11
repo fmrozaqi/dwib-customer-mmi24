@@ -59,7 +59,7 @@
            BOOLEAN Pinjaman
        }
 
-       Dim_Aset ||--o{ Fact_Pinjaman_Pelanggan : "has"
+       Dim_Aset ||--o{ Dim_Pelanggan : "has"
        Dim_Pelanggan ||--o{ Fact_Pinjaman_Pelanggan : "has"
        Dim_Lokasi ||--o{ Fact_Pinjaman_Pelanggan : "located in"
        Dim_Pekerjaan ||--o{ Fact_Pinjaman_Pelanggan : "has"

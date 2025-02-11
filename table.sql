@@ -17,7 +17,7 @@ CREATE TABLE Dim_Aset (
     ID_Pelanggan INT PRIMARY KEY,
     Punya_Kendaraan BOOLEAN,
     Punya_Rumah BOOLEAN,
-    FOREIGN KEY (ID_Pelanggan) REFERENCES Fact_Pinjaman_Pelanggan(ID_Pelanggan)
+    FOREIGN KEY (ID_Pelanggan) REFERENCES Dim_Pelanggan(ID_Pelanggan)
 );
 
 CREATE TABLE Dim_Pekerjaan (
