@@ -10,7 +10,7 @@
 1. **Run Docker Compose:**
 
    ```sh
-   docker-compose up
+   docker-compose up -d
    ```
 
 2. **Populate the Table:**
