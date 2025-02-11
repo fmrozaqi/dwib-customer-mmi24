@@ -71,3 +71,22 @@ WHERE
 GROUP BY 
     dp.Jenis_Kelamin, 
     Kategori_Penghasilan;
+
+-- Get Aggregate Jumlah Pelanggan per Kota
+select
+	kode_kota as "Kode Kota", 
+	count(*) as "Jumlah Pelanggan per-Kota"
+from fact_pinjaman_pelanggan fpp
+group by fpp.kode_kota 
+order by "Jumlah Pelanggan per-Kota" DESC;
+
+-- Get Aggregate Jumlah Peminjam dan Rata-Rata Penghasilan Peminjam per Kota
+select
+	kode_kota as "Kode Kota", 
+	count(*) as "Jumlah Peminjam per-Kota",
+	round(avg(fpp.penghasilan), 2) as "Rata-Rata Penghasilan"
+from fact_pinjaman_pelanggan fpp
+join dim_pelanggan dp ON dp.id_pelanggan = fpp.id_pelanggan 
+where fpp.pinjaman = true
+group by fpp.kode_kota 
+order by "Jumlah Peminjam per-Kota" DESC;
