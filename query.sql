@@ -90,3 +90,22 @@ join dim_pelanggan dp ON dp.id_pelanggan = fpp.id_pelanggan
 where fpp.pinjaman = true
 group by fpp.kode_kota 
 order by "Jumlah Peminjam per-Kota" DESC;
+
+-- Get Aggregate Kepemilikan Kendaraan dan Pinjaman
+SELECT 
+    da.Punya_Kendaraan, 
+    COUNT(fpp.ID_Pelanggan) AS "Jumlah Pinjaman"
+FROM Fact_Pinjaman_Pelanggan fpp
+JOIN Dim_Aset da ON fpp.ID_Pelanggan = da.ID_Pelanggan
+WHERE fpp.Pinjaman = 'yes'
+GROUP BY da.Punya_Kendaraan; 
+
+-- Get Aggregate Kepemilikan Rumah, Pinjaman dan Penghasilan
+SELECT 
+    da.Punya_Rumah, 
+    AVG(fpp.Penghasilan) AS "Rata-Rata Penghasilan", 
+    COUNT(fpp.ID_Pelanggan) AS "Jumlah Pinjaman"
+FROM Fact_Pinjaman_Pelanggan fpp
+JOIN Dim_Aset da ON fpp.ID_Pelanggan = da.ID_Pelanggan
+WHERE fpp.Pinjaman = 'yes'
+GROUP BY da.Punya_Rumah;
